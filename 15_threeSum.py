@@ -24,6 +24,33 @@
 # 解释：唯一可能的三元组和为 0 。
 from typing import List
 
+class newSolution:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        # 犹豫不决先排序，步步逼近双指针
+        nums = sorted(nums)
+        n = len(nums)
+        ans = {}
+        for k in range(n):
+            first = nums[k]
+            if first > 0:
+                break
+            if k > 0:
+                if first == nums[k-1]:
+                    continue
+            i = k+1
+            j = n-1
+            while(i < j):
+                s = first+nums[i]+nums[j]
+                if s == 0:
+                    ans[str([first,nums[i],nums[j]])] = ([first,nums[i],nums[j]])
+                    i += 1
+                elif s > 0:
+                    j -= 1
+                elif s < 0:
+                    i += 1
+        return list(ans.values())
+
+
 class Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
         ans = {}
@@ -48,6 +75,11 @@ class Solution:
             firstdic[first] = nums[first]
         ans = list(ans.keys())
         return ans
-solution = Solution()
-nums = [-1,0,1,0]
-print(solution.threeSum(nums))
+
+# solution = Solution()
+# nums = [0,1,1]
+# print(solution.threeSum(nums))
+
+newsolution = newSolution()
+nums = [-1,0,1,2,-1,-4]
+print(newsolution.threeSum(nums))
