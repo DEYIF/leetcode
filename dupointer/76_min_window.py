@@ -24,7 +24,7 @@
 # 解释: t 中两个字符 'a' 均应包含在 s 的子串中，
 # 因此没有符合条件的子字符串，返回空字符串。
 
-from collections import defaultdict,deque
+from collections import defaultdict,deque,Counter
 class Solution:
     def isincludet(self, need, t) -> bool:
         count = 0
@@ -40,6 +40,7 @@ class Solution:
         #队列开头一定是t中的字母
         need = defaultdict(int)
         res = ''
+        c = Counter(t)
         temp = len(s)
         if len(s) < len(t):
             return ''
